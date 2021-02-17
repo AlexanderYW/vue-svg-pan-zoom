@@ -1,5 +1,6 @@
-import SvgPanZoom from './SvgPanZoom.vue';
-import SvgPanZoomThumbnail from './SvgPanZoomThumbnail.vue';
+import SvgPanZoom from './SvgPanZoom.vue'
+// const SvgPanZoomThumbnailComponent from './SvgPanZoomThumbnail.vue';
 
-export { SvgPanZoom, SvgPanZoomThumbnail };
-export default SvgPanZoom;
+export default SvgPanZoom
+// export const SvgPanZoom = SvgPanZoomComponent
+// export const SvgPanZoomThumbnail = SvgPanZoomThumbnailComponent

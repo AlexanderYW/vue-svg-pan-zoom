@@ -45,7 +45,7 @@ export default {
     bus: EventBus,
     slotEL: null
   }),
-  mounted() {
+  async mounted() {
     const _this = this
     let options = {};
 
@@ -59,7 +59,6 @@ export default {
       _this.bus.$emit('mainPan');
       if(_this.onPan) _this.onPan(args);
     };
-    
     const svg = this.$refs.content.getElementsByTagName('svg')[0]
     this.spz = svg_pan_zoom(svg, options);
 
