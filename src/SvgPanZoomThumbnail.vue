@@ -19,7 +19,6 @@
     z-index: 110;
     background: white;
   }
-
   .thumbnail {
     position: absolute;
     bottom: 5px;
@@ -31,7 +30,6 @@
     overflow: hidden;
     z-index: 120;
   }
-
   .thumbnail svg {
     width: 100% !important;
     height: 100% !important;
@@ -43,8 +41,20 @@ import Scope from './Scope.vue';
 
 export default {
   components: { Scope },
-  props: [ 'onThumbnailShown', 'mainSPZ', 'bus' ],
-  data: () => ({ thumbnailSPZ: null }),
+  props: {
+    onThumbnailShown: {
+      type: [Object, Function]
+    },
+    mainSPZ: {
+      type: [Object]
+    },
+    bus: {
+      type: [Object]
+    }
+  },
+  data: () => ({
+    thumbnailSPZ: null
+  }),
   beforeCreate: function () {
     this.$options.components.SPZ = require('./SvgPanZoom.vue').default
   },

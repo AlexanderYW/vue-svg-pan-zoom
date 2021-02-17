@@ -1,78 +1,77 @@
 <template>
-<div>
+  <div ref="content">
     <slot />
-
     <SvgPanZoomThumbnail v-if="has_thumbnail"
-        :onThumbnailShown="onThumbnailShown"
-        :mainSPZ="spz"
-        :bus="bus"
+      :onThumbnailShown="onThumbnailShown"
+      :mainSPZ="spz"
+      :bus="bus"
     >
-        <slot name="thumbnail" />
+      <slot name="thumbnail" />
     </SvgPanZoomThumbnail>
-
-</div>
+  </div>
 </template>
 
 
 <script>
 import svg_pan_zoom from 'svg-pan-zoom';
-
 import props from './props';
-
-import { EventBus } from './EventBus';
-
+import EventBus from './EventBus';
 import SvgPanZoomThumbnail from './SvgPanZoomThumbnail.vue';
-
 import { SvgPanZoomApi } from './SvgPanZoomApi';
 
+
 export default {
-  components: { SvgPanZoomThumbnail },
+  components: {
+    SvgPanZoomThumbnail
+  },
   props,
   computed: {
-    has_thumbnail: function() { return this.$slots.thumbnail },
+    has_thumbnail: function() {
+      return this.$slots.thumbnail
+    },
     options: function() {
       let options = {};
-
       const is_defined = k => this[k] !== undefined;
 
       Object.keys(props)
-        .filter( is_defined )
-        .forEach( k => options[k] = this[k] );
+        .filter(is_defined)
+        .forEach(k => options[k] = this[k]);
 
       return options;
     }
   },
   data: () => ({
     spz: null,
-    bus: EventBus()
+    bus: EventBus,
+    slotEL: null
   }),
-  mounted: function() {
+  mounted() {
+    const _this = this
     let options = {};
 
-    Object.keys(props).filter( k => this[k] !== undefined ).forEach( k => options[k] = this[k] );
+    Object.keys(props).filter(k => this[k] !== undefined).forEach(k => options[k] = this[k]);
 
     options.onZoom = (...args) => {
-      this.bus.$emit( 'mainZoom' );
-      if( this.onZoom ) this.onZoom(args);
+      _this.bus.$emit('mainZoom');
+      if(_this.onZoom) _this.onZoom(args);
     };
-
     options.onPan = (...args) => {
-      this.bus.$emit( 'mainPan' );
-      if( this.onPan ) this.onPan(args);
+      _this.bus.$emit('mainPan');
+      if(_this.onPan) _this.onPan(args);
     };
+    
+    const svg = this.$refs.content.getElementsByTagName('svg')[0]
+    this.spz = svg_pan_zoom(svg, options);
 
-    this.spz = svg_pan_zoom( this.$slots.default[0].elm , options );
-
-    this.$emit( 'svgpanzoom', this.spz );
+    this.$emit('svgpanzoom', this.spz);
   },
   methods: {
-    zoom: function( v ){
-      this.spz.zoom( v );
+    zoom: function(v){
+      this.spz.zoom(v);
     },
-    zoomBy: function( v ){
-      this.spz.zoomBy( v );
+    zoomBy: function(v){
+      this.spz.zoomBy(v);
     }
   }
 };
-
 </script>

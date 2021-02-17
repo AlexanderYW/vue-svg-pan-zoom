@@ -14,22 +14,21 @@
     "url": "https://github.com/yanick/vue-svg-pan-zoom/issues"
   },
   "devDependencies": {
-    "@babel/cli": "7.4.3",
-    "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.3",
-    "@storybook/addon-actions": "5.0.10",
-    "@storybook/addon-knobs": "5.0.10",
-    "@storybook/addons": "5.0.10",
-    "@storybook/vue": "5.0.10",
-    "babel-loader": "8.0.5",
+    "@babel/cli": "7.12.16",
+    "@babel/core": "7.12.16",
+    "@babel/preset-env": "7.12.16",
+    "@storybook/addon-actions": "^6.2.0-alpha.28",
+    "@storybook/addon-knobs": "^6.2.0-alpha.28",
+    "@storybook/vue3": "6.2.0-alpha.28",
+    "babel-loader": "8.2.2",
     "babel-preset-vue": "2.0.2",
-    "poi": "12.6.6",
-    "vue": "2.5.13",
-    "vue-loader": "15.7.0",
-    "vue-template-compiler": "2.5.13"
+    "poi": "12.10.3",
+    "vue-loader": "^16.1.2"
   },
   "dependencies": {
-    "svg-pan-zoom": "3.6.0"
+    "svg-pan-zoom": "^3.6.1",
+    "tiny-emitter": "^2.1.0",
+    "vue": "^3.0.5"
   },
   "scripts": {
     "build": "poi src/index.js --format cjs -d dist/",

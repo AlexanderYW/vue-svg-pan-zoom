@@ -1,6 +1,6 @@
 export const SvgPanZoomApi = ( SvgPanZoomInstance ) => ({
-  zoom: function( v ){
-    SvgPanZoomInstance.zoom( v );
+  zoom: function(v){
+    SvgPanZoomInstance.zoom(v);
   },
-  zoomBy: ( v ) => SvgPanZoomInstance.zoomBy( v )
+  zoomBy: (v) => SvgPanZoomInstance.zoomBy(v)
 });
